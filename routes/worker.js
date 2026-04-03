@@ -44,7 +44,6 @@ router.post('/register', async (req, res) => {
         email,
         phone_number,
         password_hash,
-        vehicle_type: 'Unknown',
         active_plan: plan || 'Standard',
         upi_id,
         platform,

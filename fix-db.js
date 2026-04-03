@@ -11,7 +11,6 @@ async function fixDb() {
   const { data, error } = await supabase.from('workers').upsert({
     id: '11111111-1111-1111-1111-111111111111',
     full_name: 'Demo Worker',
-    vehicle_type: 'Bike',
     active_plan: 'Standard',
     risk_score: 10
   });
