@@ -34,8 +34,12 @@ app.use(express.json());
 app.use('/api/engine', engineRoutes);
 app.use('/api/worker', workerRoutes);
 
+app.get('/', (req, res) => {
+  res.json({ status: 'ok', message: 'SwiftShield Backend API is LIVE' });
+});
+
 app.get('/health', (req, res) => {
-  res.json({ status: 'ok', message: 'SwiftShield Backend is running.' });
+  res.json({ status: 'ok', message: 'SwiftShield Backend is running.', timestamp: new Date().toISOString() });
 });
 
 const seedMockWorker = async () => {
@@ -58,6 +62,7 @@ const seedMockWorker = async () => {
 
 app.listen(PORT, () => {
   console.log(`🚀 SwiftShield Server running on port ${PORT}`);
+  console.log(`📡 Health check available at: http://localhost:${PORT}/health`);
   seedMockWorker();
   startAutoClaimScheduler();
 });
