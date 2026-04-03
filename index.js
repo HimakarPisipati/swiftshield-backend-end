@@ -16,6 +16,7 @@ const PORT = process.env.PORT || 3000;
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
+  'https://swiftshield-front-end1.vercel.app',
   ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : []),
 ];
 
@@ -24,7 +25,7 @@ app.use(cors({
     // Allow requests with no origin (e.g. curl, Render health checks)
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) return callback(null, true);
-    callback(new Error(`CORS policy: origin ${origin} not allowed`));
+    callback(null, false); // No error, just don't allow
   },
   credentials: true,
 }));
